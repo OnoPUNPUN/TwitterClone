@@ -2,24 +2,19 @@
 
 namespace TwitterClone.Domain.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        public Guid Id { get; private set; }
         public string Username { get; private set; }
         public string Email { get; private set; }
         public string Bio { get; private set; }
-        public DateTime CreatedAt { get; private set; }
-        public DateTime ModifiedAt { get; private set; }
 
         private static readonly Regex EmailRegex = new Regex(
             @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
             RegexOptions.IgnoreCase | RegexOptions.Compiled
         );
 
-        public User(string username, string email)
+        public User(string username, string email) : base()
         {
-            Id = Guid.NewGuid();
-            CreatedAt = DateTime.UtcNow;
             SetUsername(username);
             SetEmail(email);
         }
