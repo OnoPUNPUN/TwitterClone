@@ -17,6 +17,7 @@
         public Guid? TargetId { get; private set; }
         public bool IsRead { get; private set; }
         public DateTime CreatedAt { get; private set; }
+        public DateTime ModifiedAt { get; private set; }
 
         public Notification(Guid userId, Guid triggeredById, NotificationType type, Guid? targetId = null)
         {

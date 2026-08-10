@@ -9,6 +9,7 @@ namespace TwitterClone.Domain.Entities
         public string Email { get; private set; }
         public string Bio { get; private set; }
         public DateTime CreatedAt { get; private set; }
+        public DateTime ModifiedAt { get; private set; }
 
         private static readonly Regex EmailRegex = new Regex(
             @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
