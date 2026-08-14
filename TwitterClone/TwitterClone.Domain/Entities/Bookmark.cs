@@ -4,13 +4,11 @@
     {
         public Guid UserId { get; private set; }
         public Guid TweetId { get; private set; }
-        public DateTime BookmarkedAt { get; private set; }
 
         public Bookmark(Guid userId, Guid tweetId) : base()
         {
             UserId = userId;
             TweetId = tweetId;
-            BookmarkedAt = DateTime.UtcNow;
         }
     }
 }
