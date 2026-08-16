@@ -18,14 +18,6 @@ namespace TwitterClone.Domain.Entities
             Message = message;
         }
 
-        public override string GetMessage()
-        {
-            if (!string.IsNullOrEmpty(Message))
-                return Message;
-
-            return $"User {CommentByUserId} commented (id: {CommentId}).";
-        }
-
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
