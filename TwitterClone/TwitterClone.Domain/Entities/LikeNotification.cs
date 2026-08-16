@@ -16,6 +16,14 @@ namespace TwitterClone.Domain.Entities
             Message = message;
         }
 
+        public override string GetMessage()
+        {
+            if (!string.IsNullOrEmpty(Message))
+                return Message;
+
+            return $"User {LikeByUserId} liked your post.";
+        }
+
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
