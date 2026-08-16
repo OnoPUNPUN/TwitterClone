@@ -16,6 +16,14 @@ namespace TwitterClone.Domain.Entities
             Message = message;
         }
 
+        public override string GetMessage()
+        {
+            if (!string.IsNullOrEmpty(Message))
+                return Message;
+
+            return $"User {RequesterId} sent a friend request.";
+        }
+
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
