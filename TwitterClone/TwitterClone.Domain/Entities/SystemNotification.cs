@@ -14,6 +14,11 @@ namespace TwitterClone.Domain.Entities
             Message = message;
         }
 
+        public override string GetMessage()
+        {
+            return Message ?? "System notification.";
+        }
+
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
