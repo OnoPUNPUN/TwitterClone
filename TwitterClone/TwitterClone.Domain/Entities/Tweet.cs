@@ -1,10 +1,13 @@
 ﻿namespace TwitterClone.Domain.Entities
 {
-    public class Tweet : BaseEntity
+    public class Tweet : BaseEntity, ILikable, INotifiable
     {
         public Guid AuthorId { get; private set; }
         public string Content { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
+
+        private readonly HashSet<Guid> _likes = new HashSet<Guid>();
+        private readonly List<Guid> _notifications = new List<Guid>();
 
         public Tweet(Guid authorId, string content) : base()
         {
@@ -28,5 +31,18 @@
 
             Content = content;
         }
+
+        public bool CanBeLiked()
+        {
+            return !string.IsNullOrWhiteSpace(Content);
+        }
+
+        public void AddNotification(Guid notificationId)
+        {
+            _notifications.Add(notificationId);
+        }
+
+        public IReadOnlyCollection<Guid> Likes => _likes;
+        public IReadOnlyCollection<Guid> Notifications => _notifications;
     }
 }

@@ -2,8 +2,11 @@
 
 namespace TwitterClone.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : BaseEntity, IFollowable, INotifiable
     {
+        private readonly HashSet<Guid> _followers = new HashSet<Guid>();
+        private readonly List<Guid> _notifications = new List<Guid>();
+
         public string Username { get; private set; }
         public string Email { get; private set; }
         public string Bio { get; private set; }
@@ -42,5 +45,26 @@ namespace TwitterClone.Domain.Entities
 
             Bio = bio;
         }
+
+        public void Follow(Guid userId)
+        {
+            if (userId == Id)
+                throw new ArgumentException("A user cannot follow themselves.");
+
+            _followers.Add(userId);
+        }
+
+        public void Unfollow(Guid userId)
+        {
+            _followers.Remove(userId);
+        }
+
+        public void AddNotification(Guid notificationId)
+        {
+            _notifications.Add(notificationId);
+        }
+
+        public IReadOnlyCollection<Guid> Followers => _followers;
+        public IReadOnlyCollection<Guid> Notifications => _notifications;
     }
 }
